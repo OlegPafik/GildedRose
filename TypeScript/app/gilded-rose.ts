@@ -25,6 +25,18 @@ const limitQuality = (item: Item): Item => {
   return item
 }
 
+const updateAgedBrie = (item: Item): Item => {
+  if (item.sellIn > 0) {
+    item.quality = item.quality + 1
+  }
+  if (item.sellIn <= 0) {
+    item.quality = item.quality + 2
+  }
+  limitQuality(item);
+  item.sellIn = item.sellIn - 1;
+  return item
+}
+
 export class GildedRose {
   items: Array<Item>;
 
@@ -60,14 +72,7 @@ export class GildedRose {
       }
 
       if (isAgedBrie(item)) {
-        if (item.sellIn > 0) {
-          item.quality = item.quality + 1
-        }
-        if (item.sellIn <= 0) {
-          item.quality = item.quality + 2
-        }
-        limitQuality(item);
-        item.sellIn = item.sellIn - 1;
+        updateAgedBrie(item)
       }
 
       if (isCommon(item)) {
