@@ -30,17 +30,20 @@ export class GildedRose {
         break
       }
 
-
-
       if (isBackstage(item)) {
-        if (item.sellIn > 10) {
-          item.quality = item.quality + 1
+        if (item.sellIn > 0) {
+          if (item.sellIn > 10) {
+            item.quality = item.quality + 1
+          }
+          if (item.sellIn <= 10 && item.sellIn > 5) {
+            item.quality = item.quality + 2
+          }
+          if (item.sellIn <= 5) {
+            item.quality = item.quality + 3
+          }
         }
-        if (item.sellIn <= 10 && item.sellIn > 5) {
-          item.quality = item.quality + 2
-        }
-        if (item.sellIn <= 5) {
-          item.quality = item.quality + 3
+        if (item.sellIn <= 0) {
+          item.quality = item.quality - item.quality
         }
       }
 
@@ -59,12 +62,6 @@ export class GildedRose {
         }
         if (item.sellIn <= 0) {
           item.quality = item.quality - 2
-        }
-      }
-
-      if (item.sellIn <= 0) {
-        if (isBackstage(item)) {
-          item.quality = item.quality - item.quality
         }
       }
 
