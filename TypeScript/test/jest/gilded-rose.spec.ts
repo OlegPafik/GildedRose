@@ -79,4 +79,12 @@ describe('Aged Brie', () => {
     expect(items[0].quality).toBe(50);
     expect(items[1].quality).toBe(50);
   });
+
+  it('should increase quality by 2 when sellIn zero', () => {
+    const gildedRose = new GildedRose([new Item(AgedBrie, 0, 40)]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(42);
+  });
 })
