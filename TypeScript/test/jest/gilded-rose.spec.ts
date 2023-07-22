@@ -169,15 +169,17 @@ describe('Generales', () => {
     const gildedRose = new GildedRose([
       new Item('Item1', 1, 50),
       new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-      new Item('Aged Brie', 1, 50),
-      new Item('Backstage passes to a TAFKAL80ETC concert', 1, 50)
+      new Item('Aged Brie', 1, 40),
+      new Item('Backstage passes to a TAFKAL80ETC concert', 1, 40),
+      new Item('Item1', 1, 40),
     ]);
 
     const items = gildedRose.updateQuality();
 
     expect(items[0].quality).toBe(49);
     expect(items[1].quality).toBe(80);
-    expect(items[2].quality).toBe(50);
-    expect(items[3].quality).toBe(50);
+    expect(items[2].quality).toBe(41);
+    expect(items[3].quality).toBe(43);
+    expect(items[4].quality).toBe(39);
   })
 })

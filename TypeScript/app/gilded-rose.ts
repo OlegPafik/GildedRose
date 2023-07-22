@@ -86,19 +86,22 @@ export class GildedRose {
       const item = this.items[i]
 
       if (isSulfuras(item)) {
-        break
+        continue
       }
 
       if (isBackstage(item)) {
         updateBackstage(item)
+        continue
       }
 
       if (isAgedBrie(item)) {
         updateAgedBrie(item)
+        continue
       }
 
       if (isCommon(item)) {
         updateCommon(item)
+        continue
       }
     }
 
