@@ -31,9 +31,7 @@ export class GildedRose {
 
 
       if (!isAgedBrie(item) && !isBackstage(item)) {
-        if (item.quality > 0) {
-          item.quality = item.quality - 1
-        }
+        item.quality = item.quality - 1
       } else {
         item.quality = item.quality + 1
         if (isBackstage(item)) {
@@ -49,9 +47,7 @@ export class GildedRose {
       if (item.sellIn < 0) {
         if (!isAgedBrie(item)) {
           if (!isBackstage(item)) {
-            if (item.quality > 0) {
-              item.quality = item.quality - 1
-            }
+            item.quality = item.quality - 1
           } else {
             item.quality = item.quality - item.quality
           }
@@ -62,6 +58,10 @@ export class GildedRose {
       if (item.quality > 50) {
         item.quality = 50
       }
+      if (item.quality < 0) {
+        item.quality = 0
+      }
+
     }
 
     return this.items;
