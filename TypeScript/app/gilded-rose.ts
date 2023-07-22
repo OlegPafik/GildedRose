@@ -15,6 +15,16 @@ const isBackstage = (item: Item): boolean => item.name == 'Backstage passes to a
 const isSulfuras = (item: Item): boolean => item.name == 'Sulfuras, Hand of Ragnaros'
 const isCommon = (item: Item): boolean => !isAgedBrie(item) && !isBackstage(item) && !isSulfuras(item)
 
+const limitQuality = (item: Item): Item => {
+  if (item.quality > 50) {
+    item.quality = 50
+  }
+  if (item.quality < 0) {
+    item.quality = 0
+  }
+  return item
+}
+
 export class GildedRose {
   items: Array<Item>;
 
@@ -65,12 +75,7 @@ export class GildedRose {
         }
       }
 
-      if (item.quality > 50) {
-        item.quality = 50
-      }
-      if (item.quality < 0) {
-        item.quality = 0
-      }
+      limitQuality(item);
 
       item.sellIn = item.sellIn - 1;
     }
