@@ -31,7 +31,7 @@ describe('Sulfuras, Hand of Ragnaros', () => {
 
     expect(items[0].sellIn).toBe(15);
   });
-  it('should not change sellIn when sellIn negative ', () => {
+  it('should not change sellIn when sellIn negative', () => {
     const gildedRose = new GildedRose([new Item(Sulfuras, -15, 80)]);
 
     const items = gildedRose.updateQuality();
@@ -50,10 +50,18 @@ describe('Sulfuras, Hand of Ragnaros', () => {
 
 describe('Aged Brie', () => {
   const AgedBrie = 'Aged Brie'
-  it('should increase quality by 1 when sellIn positive ', () => {
+  it('should increase quality by 1 when sellIn positive', () => {
     const gildedRose = new GildedRose([new Item(AgedBrie, 15, 40)]);
 
     const items = gildedRose.updateQuality();
 
-    expect(items[0].quality).toBe(41)});
+    expect(items[0].quality).toBe(41)
+  });
+  it('should increase quality by 2 when sellIn negative', () => {
+    const gildedRose = new GildedRose([new Item(AgedBrie, -15, 40)]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(42)
+  });
 })

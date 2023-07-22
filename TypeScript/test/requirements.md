@@ -24,6 +24,3 @@ Los demas articulos:
 
 Requerimientos futuros:
   Los artículos conjurados degradan su calidad al doble de velocidad que los normales
-
-Requerimientos nuestros:
-  Sulfuras quality modificacion automatica a 80 si no lo es al crearlo
