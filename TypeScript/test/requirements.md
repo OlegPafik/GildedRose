@@ -16,7 +16,7 @@ Entrada al backstage
 	Si sellIn mas de 10 dias quality aumenta 1
 	Si sellIn 10 dias o menos para el concierto, quality aumenta en 2 cada dia
 	Si sellIn 5 dias o menos quality aumenta en 3 unidades
-	Si sellIn negativo calidad cae a 0	
+	Si sellIn negativo o 0 calidad cae a 0	
 
 Los demas articulos:
 	Al final de cada dia se decremente sellIn y quality disminuye

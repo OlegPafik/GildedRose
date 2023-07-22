@@ -88,3 +88,40 @@ describe('Aged Brie', () => {
     expect(items[0].quality).toBe(42);
   });
 })
+
+
+describe('Backstage passes to a TAFKAL80ETC concert', () => {
+  const Ticket = 'Backstage passes to a TAFKAL80ETC concert';
+  it('should increase quality by 1 when sellIn greater than 10', () => {
+    const gildedRose = new GildedRose([new Item(Ticket, 11, 40)]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(41);
+  })
+  it('should increase quality by 2 when sellIn between 6 and 10', () => {
+    const gildedRose = new GildedRose([new Item(Ticket, 10, 40), new Item(Ticket, 9, 40)]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(42);
+    expect(items[1].quality).toBe(42);
+  })
+  it('should increase quality by 3 when sellIn between 1 and 5', () => {
+    const gildedRose = new GildedRose([new Item(Ticket, 5, 40), new Item(Ticket, 4, 40),  new Item(Ticket, 1, 40)]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(43);
+    expect(items[1].quality).toBe(43);
+    expect(items[2].quality).toBe(43);
+  })
+  it('should quality be 0 when sellIn is 0 or less', () => {
+    const gildedRose = new GildedRose([new Item(Ticket, 0, 40), new Item(Ticket, -1, 40)]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(0);
+    expect(items[1].quality).toBe(0);
+  })
+})
