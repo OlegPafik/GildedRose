@@ -25,6 +25,11 @@ const limitQuality = (item: Item): Item => {
   return item
 }
 
+const passDay = (item: Item): Item => {
+  item.sellIn = item.sellIn - 1;
+  return item
+}
+
 const updateAgedBrie = (item: Item): Item => {
   if (item.sellIn > 0) {
     item.quality = item.quality + 1
@@ -33,7 +38,7 @@ const updateAgedBrie = (item: Item): Item => {
     item.quality = item.quality + 2
   }
   limitQuality(item);
-  item.sellIn = item.sellIn - 1;
+  passDay(item);
   return item
 }
 
@@ -53,7 +58,7 @@ const updateBackstage = (item: Item): Item => {
     item.quality = 0
   }
   limitQuality(item);
-  item.sellIn = item.sellIn - 1;
+  passDay(item);
   return item
 }
 
@@ -65,7 +70,7 @@ const updateCommon = (item: Item): Item => {
     item.quality = item.quality - 2
   }
   limitQuality(item);
-  item.sellIn = item.sellIn - 1;
+  passDay(item);
   return item;
 }
 
