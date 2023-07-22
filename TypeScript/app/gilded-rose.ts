@@ -43,11 +43,18 @@ export class GildedRose {
           item.quality = item.quality + 3
         }
       }
+
       if (isAgedBrie(item)) {
         item.quality = item.quality + 1
       }
+
       if (isCommon(item)) {
-        item.quality = item.quality - 1
+        if (item.sellIn > 0) {
+          item.quality = item.quality - 1
+        }
+        if (item.sellIn <= 0) {
+          item.quality = item.quality - 2
+        }
       }
 
       if (item.sellIn <= 0) {
@@ -56,9 +63,6 @@ export class GildedRose {
         }
         if (isAgedBrie(item)) {
           item.quality = item.quality + 1
-        }
-        if (isCommon(item)) {
-          item.quality = item.quality - 1
         }
       }
 
