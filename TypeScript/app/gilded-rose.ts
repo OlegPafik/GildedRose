@@ -37,6 +37,38 @@ const updateAgedBrie = (item: Item): Item => {
   return item
 }
 
+const updateBackstage = (item: Item): Item => {
+  if (item.sellIn > 0) {
+    if (item.sellIn > 10) {
+      item.quality = item.quality + 1
+    }
+    if (item.sellIn <= 10 && item.sellIn > 5) {
+      item.quality = item.quality + 2
+    }
+    if (item.sellIn <= 5) {
+      item.quality = item.quality + 3
+    }
+  }
+  if (item.sellIn <= 0) {
+    item.quality = 0
+  }
+  limitQuality(item);
+  item.sellIn = item.sellIn - 1;
+  return item
+}
+
+const updateCommon = (item: Item): Item => {
+  if (item.sellIn > 0) {
+    item.quality = item.quality - 1
+  }
+  if (item.sellIn <= 0) {
+    item.quality = item.quality - 2
+  }
+  limitQuality(item);
+  item.sellIn = item.sellIn - 1;
+  return item;
+}
+
 export class GildedRose {
   items: Array<Item>;
 
@@ -53,22 +85,7 @@ export class GildedRose {
       }
 
       if (isBackstage(item)) {
-        if (item.sellIn > 0) {
-          if (item.sellIn > 10) {
-            item.quality = item.quality + 1
-          }
-          if (item.sellIn <= 10 && item.sellIn > 5) {
-            item.quality = item.quality + 2
-          }
-          if (item.sellIn <= 5) {
-            item.quality = item.quality + 3
-          }
-        }
-        if (item.sellIn <= 0) {
-          item.quality = 0
-        }
-        limitQuality(item);
-        item.sellIn = item.sellIn - 1;
+        updateBackstage(item)
       }
 
       if (isAgedBrie(item)) {
@@ -76,14 +93,7 @@ export class GildedRose {
       }
 
       if (isCommon(item)) {
-        if (item.sellIn > 0) {
-          item.quality = item.quality - 1
-        }
-        if (item.sellIn <= 0) {
-          item.quality = item.quality - 2
-        }
-        limitQuality(item);
-        item.sellIn = item.sellIn - 1;
+        updateCommon(item)
       }
     }
 
