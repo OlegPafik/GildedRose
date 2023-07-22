@@ -55,6 +55,8 @@ export class GildedRose {
         if (item.sellIn <= 0) {
           item.quality = 0
         }
+        limitQuality(item);
+        item.sellIn = item.sellIn - 1;
       }
 
       if (isAgedBrie(item)) {
@@ -64,6 +66,8 @@ export class GildedRose {
         if (item.sellIn <= 0) {
           item.quality = item.quality + 2
         }
+        limitQuality(item);
+        item.sellIn = item.sellIn - 1;
       }
 
       if (isCommon(item)) {
@@ -73,11 +77,9 @@ export class GildedRose {
         if (item.sellIn <= 0) {
           item.quality = item.quality - 2
         }
+        limitQuality(item);
+        item.sellIn = item.sellIn - 1;
       }
-
-      limitQuality(item);
-
-      item.sellIn = item.sellIn - 1;
     }
 
     return this.items;
