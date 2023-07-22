@@ -29,24 +29,19 @@ export class GildedRose {
         break
       }
 
+
       if (!isAgedBrie(item) && !isBackstage(item)) {
         if (item.quality > 0) {
           item.quality = item.quality - 1
         }
       } else {
-        if (item.quality < 50) {
-          item.quality = item.quality + 1
-          if (isBackstage(item)) {
-            if (item.sellIn < 11) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1
-              }
-            }
-            if (item.sellIn < 6) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1
-              }
-            }
+        item.quality = item.quality + 1
+        if (isBackstage(item)) {
+          if (item.sellIn < 11) {
+            item.quality = item.quality + 1
+          }
+          if (item.sellIn < 6) {
+            item.quality = item.quality + 1
           }
         }
       }
@@ -61,10 +56,11 @@ export class GildedRose {
             item.quality = item.quality - item.quality
           }
         } else {
-          if (item.quality < 50) {
-            item.quality = item.quality + 1
-          }
+          item.quality = item.quality + 1
         }
+      }
+      if (item.quality > 50) {
+        item.quality = 50
       }
     }
 
