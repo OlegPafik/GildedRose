@@ -50,9 +50,7 @@ export class GildedRose {
         item.quality = item.quality - 1
       }
 
-      item.sellIn = item.sellIn - 1;
-
-      if (item.sellIn < 0) {
+      if (item.sellIn <= 0) {
         if (isBackstage(item)) {
           item.quality = item.quality - item.quality
         }
@@ -71,6 +69,7 @@ export class GildedRose {
         item.quality = 0
       }
 
+      item.sellIn = item.sellIn - 1;
     }
 
     return this.items;
