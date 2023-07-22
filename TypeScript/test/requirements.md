@@ -2,12 +2,11 @@ Generales
 	Todos los articulos tienen las propiedades sellIn y quality.
 	La calidad nunca es negativa
 	La calidad nunca es mayor que 50 (salvo sulfuras)
-	
+  No se puede alterar el objeto Item	
 
 Sulfuras: 
 	Calidad inmutable 80
 	Fecha de venta inmutable
-
 
 Aged brie: 
 	Con sellIn positivo quality aumenta 1 cada dia 
@@ -22,3 +21,9 @@ Entrada al backstage
 Los demas articulos:
 	Al final de cada dia se decremente sellIn y quality disminuye
 	Si fecha sellIn negativo quality disminuye el doble
+
+Requerimientos futuros:
+  Los artículos conjurados degradan su calidad al doble de velocidad que los normales
+
+Requerimientos nuestros:
+  Sulfuras quality modificacion automatica a 80 si no lo es al crearlo
