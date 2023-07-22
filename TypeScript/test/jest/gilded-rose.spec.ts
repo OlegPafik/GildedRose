@@ -125,3 +125,44 @@ describe('Backstage passes to a TAFKAL80ETC concert', () => {
     expect(items[1].quality).toBe(0);
   })
 })
+
+describe('Generales', () => {
+  it('should never have negative quality', () => {
+    const gildedRose = new GildedRose([new Item('Item1', 0, 0), new Item('Item2', -1, 0)]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(0);
+    expect(items[1].quality).toBe(0);
+  })
+  it('should never have quality greater than 50', () => {
+    const gildedRose = new GildedRose([
+      new Item('Item1', 1, 50),
+      new Item('Item2', 0, 50),
+      new Item('Aged Brie', 1, 50),
+      new Item('Backstage passes to a TAFKAL80ETC concert', 1, 50)
+    ]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(49);
+    expect(items[1].quality).toBe(48);
+    expect(items[2].quality).toBe(50);
+    expect(items[3].quality).toBe(50);
+  })
+  it('should decrease by 1 if sellIn positive', () => {
+    const gildedRose = new GildedRose([new Item('Item1', 1, 20)]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(19);
+  })
+  it('should decrease by 2 if sellIn zero or negative', () => {
+    const gildedRose = new GildedRose([new Item('Item1', 0, 20), new Item('Item2', -1, 20)]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(18);
+    expect(items[1].quality).toBe(18);
+  })
+})
