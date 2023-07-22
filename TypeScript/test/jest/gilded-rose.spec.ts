@@ -64,4 +64,19 @@ describe('Aged Brie', () => {
 
     expect(items[0].quality).toBe(42)
   });
+  it('should increase quality to 50 when sellIn negative and quality started at 49', () => {
+    const gildedRose = new GildedRose([new Item(AgedBrie, -15, 49)]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(50);
+  });
+  it('should not increase quality more than 50', () => {
+    const gildedRose = new GildedRose([new Item(AgedBrie, -15, 50), new Item(AgedBrie, 15, 50)]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(50);
+    expect(items[1].quality).toBe(50);
+  });
 })
