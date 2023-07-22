@@ -13,6 +13,7 @@ export class Item {
 const isAgedBrie = (item: Item): boolean => item.name == 'Aged Brie'
 const isBackstage = (item: Item): boolean => item.name == 'Backstage passes to a TAFKAL80ETC concert'
 const isSulfuras = (item: Item): boolean => item.name == 'Sulfuras, Hand of Ragnaros'
+const isCommon = (item: Item): boolean => !isAgedBrie(item) && !isBackstage(item) && !isSulfuras(item)
 
 export class GildedRose {
   items: Array<Item>;
@@ -58,7 +59,7 @@ export class GildedRose {
         if (isAgedBrie(item)) {
           item.quality = item.quality + 1
         }
-        if (!isBackstage(item) && !isAgedBrie(item)) {
+        if (isCommon(item)) {
           item.quality = item.quality - 1
         }
       }
