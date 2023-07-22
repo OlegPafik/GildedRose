@@ -31,14 +31,20 @@ export class GildedRose {
 
 
       if (isAgedBrie(item) || isBackstage(item)) {
-        item.quality = item.quality + 1
+
         if (isBackstage(item)) {
-          if (item.sellIn < 11) {
+          if (item.sellIn > 10) {
             item.quality = item.quality + 1
           }
-          if (item.sellIn < 6) {
-            item.quality = item.quality + 1
+          if (item.sellIn <= 10 && item.sellIn > 5) {
+            item.quality = item.quality + 2
           }
+          if (item.sellIn <= 5) {
+            item.quality = item.quality + 3
+          }
+        }
+        if (isAgedBrie(item)) {
+          item.quality = item.quality + 1
         }
       }
       else {
